@@ -1,0 +1,29 @@
+const {db}  = require ('../db/index.js');
+
+const getPosts = async (req, res) => {
+  try {
+    const result = await db.query('SELECT * FROM posts ORDER BY id ASC', []);
+    console.log(result);
+    return result.rows;
+} catch (err) {
+   console.log(err);
+}
+}
+
+  
+const getPostById = async (req, res) => {
+
+    console.log(req.params.id);
+
+      try {
+        const text = 'SELECT * FROM products WHERE id = $1;';
+        const inputs = [re];
+        const result = await db.query(text, inputs);
+        return result.rows[0];
+    } catch (err) {
+      console.log(err);
+    }
+}
+
+
+  module.exports = { getPosts, getPostById };
